@@ -7,9 +7,9 @@ import {
 } from "react-router-dom";
 import './App.css';
 import Login from "./auth/login/components/login.component"
-import UserList from "./userlisting/components/userlist.component"
+import UserList from "./user/userlisting/components/userlist.component"
 import Dashboard from "./dashboard/components/dashboard.component"
-import ChangePassword from "./auth/change-password/component/change-password.component"
+import ChangePassword from "./user/change-password/component/change-password.component"
 function App() {
   return (
     <div className="app-routes">

@@ -96,8 +96,7 @@ app.post('/changepassword', (req, res) => {
   if (!req.user) return res.status(401).json({ success: false, message: 'Invalid user to access it.' });
   const currentpwd = req.body.currentpassword;
   const newpwd = req.body.newpassword;
-  const confirmpwd = req.body.confirmpassword;
-  if (!currentpwd || !newpwd || !confirmpwd) {
+  if (!currentpwd || !newpwd) {
     return res.status(400).json({
       error: true,
       message: "User current Password or New Password or Confirm Password is required."

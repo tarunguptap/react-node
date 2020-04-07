@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Layout from '../../../shared/layouts/admin/admin.component'
-import { Auth } from '../../service/auth.service'
+import { UserService } from '../../service/user.service'
 import Button from 'react-bootstrap/Button'
 import Spinner from 'react-bootstrap/Spinner'
 
@@ -31,10 +31,11 @@ class ChangePassword extends Component {
         } else if (newpassword !== confirmpassword) {
             this.setState({error : "New Password and Confirm Password doesnot match"});
         } else {
-            Auth.changepassword({ currentpassword: currentpassword, newpassword: newpassword, confirmpassword: confirmpassword })
+            UserService.changepassword({ currentpassword: currentpassword, newpassword: newpassword })
           .then((response) => {
               console.log(response)
               this.props.history.push("/dashboard")
+              alert("Password changed successfully.") // Need to add toast code
           }).catch(err =>{
             this.setState({error : "Invalid Credentails"});
         }).finally(() => {

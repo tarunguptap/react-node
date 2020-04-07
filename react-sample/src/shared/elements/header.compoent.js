@@ -30,7 +30,7 @@ export default withRouter(class Header extends React.Component {
         return (
             <header className="app-header">
                 <Link className="app-header__logo" to="/">Auditor</Link>
-                <Link className="app-sidebar__toggle"></Link>
+                <Link className="app-sidebar__toggle" to="#"></Link>
                 <ul className="app-nav">
                     <li className="dropdown">
                         <Dropdown>
@@ -40,7 +40,7 @@ export default withRouter(class Header extends React.Component {
 
                             <Dropdown.Menu className="dropdown-menu settings-menu dropdown-menu-right">
                                 <Dropdown.Item as="button" onClick={ ()=> this.logout() }><i class="fa fa-sign-out fa-lg"></i> Logout</Dropdown.Item>
-                                <Dropdown.Item as="button" onClick={ ()=> this.changePassword() }><i class="fa fa-sign-out fa-lg"></i> Change Password</Dropdown.Item>
+                                <Dropdown.Item as="button" onClick={ ()=> this.changePassword() }><i class="fa fa-eye fa-lg"></i> Change Password</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                     </li>

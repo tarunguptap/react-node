@@ -1,6 +1,6 @@
 import React, { Component} from 'react';
-import { Users } from './../../userlisting/service/userlist.service';
-import Layout from './../../shared/layouts/admin/admin.component'
+import { UserService } from '../../service/user.service'
+import Layout from './../../../shared/layouts/admin/admin.component'
 //import Layout from './../../shared/layouts/auth/auth.component'
 
 class UserList extends Component {
@@ -22,7 +22,7 @@ class UserList extends Component {
       if(session === null) {
           this.props.history.push('/login')
       } else {
-        Users.getusers({ })
+        UserService.getusers({ })
         .then((response) => {
             console.log(response)
             console.log(response.data)
