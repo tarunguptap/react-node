@@ -1,2 +1,2 @@
 # react-node
-Front-end application created n=in react and backend application created in node
+Front-end application created in react and backend application created in node
