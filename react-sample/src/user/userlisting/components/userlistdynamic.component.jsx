@@ -10,6 +10,7 @@ class UserListDynamic extends Component {
             isLoading: true,
             users: [],
             tableHeader: ["#","Email","Name","Username"],
+            tableData: [],
             error: null
         };
     }
@@ -27,24 +28,17 @@ class UserListDynamic extends Component {
         .then((response) => {
             this.setState({               
               users: response.data,
-              isLoading: false
+              isLoading: false,
+              tableData: response.data.map((user, i) => ([i+1, user.email, user.name, user.username]))
              })
         })
         .catch(error => this.setState({ error, isLoading: false }));
       }
     }
-
-    userTable() {
-     let userdata =  this.state.users.map((user, i) => {
-        return [i+1, user.email, user.name, user.username]
-      });
-      return <Table header ={this.state.tableHeader} userdata={userdata} title="User List" tableName="User List Table"/>
-    }
-
     render() {
         return (
           <Layout>
-            {this.userTable()}
+            <Table tableHeader ={this.state.tableHeader} tableData={this.state.tableData} title="User List" tableName="User List Table"/>
           </Layout>
         );
     }
