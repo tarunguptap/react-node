@@ -18,6 +18,21 @@ const userData = {
   isAdmin: true
 };
 
+const userList1 = [{
+  email: "ankur@qasource.com",
+  password: "Ankur",
+  name: "Ankur",
+  username: "Ankur",
+  isAdmin: true
+},
+{
+  email: "sachin@qasource.com",
+  password: "Sachin",
+  name: "Sachin",
+  username: "Sachin",
+  isAdmin: false
+}];
+
 const userList = [{
   email: "tarun@qasource.com",
   password: "tarun",
@@ -78,18 +93,20 @@ app.get('/', (req, res) => {
 // request handlers
 app.get('/userList', (req, res) => {
   console.log("incoming request for userlist");
+  const pagenumber = req.query.pagenumber;
+  const totalRecords = 5;
+  console.log("#### pagenumber  : ",pagenumber);
   if (!req.user) return res.status(401).json({ success: false, message: 'Invalid user to access it.' });
-  console.log(userList);
-  return res.json(userList);
+  res.setHeader("totalRecords", totalRecords);
+  if(pagenumber == 1) {
+    console.log("@@@@@  userList :: ",JSON.stringify(userList));
+    return res.json(userList);
+  }
+  console.log("@@@@@ userList1 ::: ",JSON.stringify(userList1));
+  return res.json(userList1);
 });
 
-// request handlers
-app.get('/userList', (req, res) => {
-  console.log("incoming request for userlist");
-  if (!req.user) return res.status(401).json({ success: false, message: 'Invalid user to access it.' });
-  console.log(userList);
-  return res.json(userList);
-});
+
 
 // request handlers
 app.put('/changepassword', (req, res) => {
