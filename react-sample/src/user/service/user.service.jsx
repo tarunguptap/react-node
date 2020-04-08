@@ -5,7 +5,7 @@ export const UserService = {
         const headers = {
             'xlogintoken': token
         };
-        return axiosInstance.post(
+        return axiosInstance.put(
             'changepassword',
             {...request}, {headers}
         )
