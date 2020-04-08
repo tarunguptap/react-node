@@ -11,6 +11,10 @@ export default withRouter(class Sidebar extends React.Component {
     userlist() {
         this.props.history.push('/users')        
     }
+
+    userlistdynamic() {
+        this.props.history.push('/dynamicusers')        
+    }
     dashboard() {
         this.props.history.push('/dashboard')        
     }
@@ -42,6 +46,10 @@ export default withRouter(class Sidebar extends React.Component {
                         <li className="app-menu__item">
                             <i className="app-menu__icon fa fa-dashboard"></i>
                             <span className="app-menu__label" onClick={ ()=> this.userlist() }>Users </span>
+                        </li>
+                        <li className="app-menu__item">
+                            <i className="app-menu__icon fa fa-dashboard"></i>
+                            <span className="app-menu__label" onClick={ ()=> this.userlistdynamic() }>Dynamic Users </span>
                         </li>
                     </ul>
                 </aside>
