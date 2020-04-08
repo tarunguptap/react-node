@@ -14,25 +14,34 @@ class Table extends Component {
 
     render() { 
         return (  
-            <main className="app-content">
+            <div>
+              <div className="app-title">
+                <div>
+                  <h1><i className="fa fa-th-list"></i> {this.props.tableName}</h1>
+                  <p>Table to display {this.props.title} data effectively</p>
+                </div>
+              </div>
               <div className="row">
-                <div className="col-md-6">
+                <div className="col-md-12">
                   <div className="tile">
-                    <h3 className="tile-title">User Listing</h3>
-                    <table className="table">
-                      <thead>
-                          <tr>
-                            {this.header()}
-                          </tr>
-                      </thead>
-                      <tbody>
-                          {this.data()}
-                      </tbody>
-                    </table>
+                    <div className="tile-body">
+                      <div className="table-responsive">
+                        <table className="table table-hover table-bordered">
+                          <thead>
+                              <tr>
+                                {this.header()}
+                              </tr>
+                          </thead>
+                          <tbody>
+                              {this.data()}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </main>
+            </div>
         );
     }
 }

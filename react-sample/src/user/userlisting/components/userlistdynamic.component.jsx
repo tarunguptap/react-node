@@ -9,7 +9,7 @@ class UserListDynamic extends Component {
         this.state = {  
             isLoading: true,
             users: [],
-            tableHeader: ["Email","Name","Username"],
+            tableHeader: ["#","Email","Name","Username"],
             error: null
         };
     }
@@ -36,9 +36,9 @@ class UserListDynamic extends Component {
 
     userTable() {
      let userdata =  this.state.users.map((user, i) => {
-        return [user.email, user.name, user.username]
+        return [i+1, user.email, user.name, user.username]
       });
-      return <Table header ={this.state.tableHeader} userdata={userdata}/>
+      return <Table header ={this.state.tableHeader} userdata={userdata} title="User List" tableName="User List Table"/>
     }
 
     render() {
