@@ -92,7 +92,7 @@ app.get('/userList', (req, res) => {
 });
 
 // request handlers
-app.post('/changepassword', (req, res) => {
+app.put('/changepassword', (req, res) => {
   if (!req.user) return res.status(401).json({ success: false, message: 'Invalid user to access it.' });
   const currentpwd = req.body.currentpassword;
   const newpwd = req.body.newpassword;
