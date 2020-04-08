@@ -39,8 +39,8 @@ export default withRouter(class Header extends React.Component {
                             </Dropdown.Toggle>
 
                             <Dropdown.Menu className="dropdown-menu settings-menu dropdown-menu-right">
-                                <Dropdown.Item as="button" onClick={ ()=> this.logout() }><i class="fa fa-sign-out fa-lg"></i> Logout</Dropdown.Item>
-                                <Dropdown.Item as="button" onClick={ ()=> this.changePassword() }><i class="fa fa-eye fa-lg"></i> Change Password</Dropdown.Item>
+                                <Dropdown.Item as="button" onClick={ ()=> this.logout() }><i className="fa fa-sign-out fa-lg"></i> Logout</Dropdown.Item>
+                                <Dropdown.Item as="button" onClick={ ()=> this.changePassword() }><i className="fa fa-eye fa-lg"></i> Change Password</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                     </li>

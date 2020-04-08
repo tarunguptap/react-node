@@ -1,7 +1,7 @@
 import React, { Component} from 'react';
 import { UserService } from '../../service/user.service'
 import Layout from './../../../shared/layouts/admin/admin.component'
-//import Layout from './../../shared/layouts/auth/auth.component'
+import DataTable from './../../dataTable';
 
 class UserList extends Component {
     constructor(props) {
@@ -24,8 +24,6 @@ class UserList extends Component {
       } else {
         UserService.getusers({ })
         .then((response) => {
-            console.log(response)
-            console.log(response.data)
             this.setState({ 
                 users: response.data,
                 isLoading: false
@@ -35,17 +33,22 @@ class UserList extends Component {
       }
     }
 
+    dataTable() {
+      return this.state.users.map((data, i) => {
+        return <DataTable userdata={data} key={i}/>
+      });
+    }
+
     render() {
         const { isLoading, users, error } = this.state;
         return (
           <Layout>
-            <main class="app-content">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="tile">
-                    <h3 class="tile-title">User Listing</h3>
-                    {error ? <p>{error.message}</p> : null}
-                    <table class="table">
+            <main className="app-content">
+              <div className="row">
+                <div className="col-md-6">
+                  <div className="tile">
+                    <h3 className="tile-title">User Listing</h3>
+                    <table className="table">
                       <thead>
                         <tr>
                           <th>Name</th>
@@ -54,22 +57,11 @@ class UserList extends Component {
                         </tr>
                       </thead>
                       <tbody>
-                      {!isLoading ? (
-                        users.map(user => {
-                        //const { username, name, email } = user;
-                        return (
-                          <tr key={user.username}>
-                            <td>{user.name}</td>
-                            <td>{user.email}</td>
-                            <td>{user.username}</td>
-                            <hr />
-                          </tr>
-                  );
-                })
-              // If there is a delay in data, let's let the user know it's loading
-              ) : (
-                <h3>Loading...</h3>
-              )}
+                        {!isLoading ? (this.dataTable() 
+                          // If there is a delay in data, let's let the user know it's loading
+                          ) : (
+                          <h3>Loading...</h3>
+                        )}
                       </tbody>
                     </table>
                   </div>

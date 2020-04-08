@@ -5,7 +5,7 @@ import { Link, withRouter } from "react-router-dom";
 
 export default withRouter(class Sidebar extends React.Component {
     state = {
-        user: JSON.parse(localStorage.getItem('session')).user
+        user: ""
     }
 
     userlist() {
@@ -16,6 +16,12 @@ export default withRouter(class Sidebar extends React.Component {
     }
 
     componentDidMount() {
+        let session = JSON.parse(localStorage.getItem('session'));
+        if(session === null) {
+            this.props.history.push('/login')
+        } else {
+            this.state.user = JSON.parse(localStorage.getItem('session')).user
+        }
     }
     render() {
         return (

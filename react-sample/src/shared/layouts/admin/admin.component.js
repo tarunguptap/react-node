@@ -7,7 +7,7 @@ const adminLayout = (props) => {
         <React.Fragment>
             <Header></Header>
             <Sidebar></Sidebar>
-            <main class="app-content">
+            <main className="app-content">
                 {props.children}
             </main>
         </React.Fragment>
