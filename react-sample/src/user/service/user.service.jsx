@@ -16,7 +16,7 @@ export const UserService = {
             axiosInstance.defaults.headers.common["Authorization"] = token;
             return axiosInstance.get(
                 'userList',
-                 {...request}
+                {params: {...request}}
               )     
         }
         

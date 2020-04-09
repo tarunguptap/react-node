@@ -100,10 +100,10 @@ app.get('/userList', (req, res) => {
   res.setHeader("totalRecords", totalRecords);
   if(pagenumber == 1) {
     console.log("@@@@@  userList :: ",JSON.stringify(userList));
-    return res.json(userList);
+    return res.json({ records: userList, total : totalRecords});
   }
   console.log("@@@@@ userList1 ::: ",JSON.stringify(userList1));
-  return res.json(userList1);
+  return res.json({ records: userList1, total : totalRecords});;
 });
 
 

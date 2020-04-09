@@ -1,4 +1,5 @@
 import React from 'react';
+import Paginator from './paginator.component';
 let table = (props) => {
 
   let headerList = props.tableHeader.map((header, i) => {
@@ -10,7 +11,7 @@ let table = (props) => {
   });
 
   return (  
-    <div>
+    <React.Fragment>
       <div className="app-title">
         <div>
           <h1><i className="fa fa-th-list"></i> {props.tableName}</h1>
@@ -34,10 +35,17 @@ let table = (props) => {
                 </table>
               </div>
             </div>
+            <Paginator
+              totalItems={props.totalItems}
+              currentPage={props.currentPage}
+              maxSize={3}
+              pageChanged={props.pageChanged}
+              itemsPerPage={props.itemsPerPage}>
+          </Paginator>
           </div>
         </div>
       </div>
-    </div>
+    </React.Fragment>
   );
 } 
 export default table;

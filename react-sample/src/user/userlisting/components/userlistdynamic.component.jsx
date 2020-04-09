@@ -11,25 +11,34 @@ class UserListDynamic extends Component {
             users: [],
             tableHeader: ["#","Email","Name","Username"],
             tableData: [],
+            currentPage: 1,
+            totalRecords: 0,
+            itemsPerPage: 3,
             error: null
         };
     }
 
+    pageChanged = (pager) => {
+      this.fetchUsers(pager.page)
+  }
+
     componentDidMount() {
-        this.fetchUsers();
+      let { currentPage } = this.state
+      this.fetchUsers(currentPage);
     };
 
-    fetchUsers() {
+    fetchUsers(currentPage=1) {
       let session = JSON.parse(localStorage.getItem('session'));
       if(session === null) {
           this.props.history.push('/login')
       } else {
-        UserService.getusers({ })
+        UserService.getusers({ pagenumber: currentPage })
         .then((response) => {
             this.setState({               
-              users: response.data,
+              users: response.data.records,
               isLoading: false,
-              tableData: response.data.map((user, i) => ([i+1, user.email, user.name, user.username]))
+              totalRecords: response.data.total,
+              tableData: response.data.records.map((user, i) => ([i+1, user.email, user.name, user.username]))
              })
         })
         .catch(error => this.setState({ error, isLoading: false }));
@@ -38,7 +47,7 @@ class UserListDynamic extends Component {
     render() {
         return (
           <Layout>
-            <Table tableHeader ={this.state.tableHeader} tableData={this.state.tableData} title="User List" tableName="User List Table"/>
+            <Table pageChanged={this.pageChanged} currentPage = {this.state.currentPage} totalItems={this.state.totalRecords} itemsPerPage={this.state.itemsPerPage} tableHeader ={this.state.tableHeader} tableData={this.state.tableData} title="User List" tableName="User List Table"/>
           </Layout>
         );
     }
