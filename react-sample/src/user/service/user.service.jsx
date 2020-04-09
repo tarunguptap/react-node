@@ -2,27 +2,19 @@ import axiosInstance from '../../shared/libs/axios'
 export const UserService = {
     changepassword: (request) => {
         let token = UserService.getTokenFromStorage();
-        const headers = {
-            'xlogintoken': token
-        };
+        //const headers = {'xlogintoken': JSON.parse(localStorage.getItem('session')).token };
         return axiosInstance.put(
             'changepassword',
-            {...request}, {headers}
+            {...request}
+            //{...request}, {headers}
         )
     },
     getusers: (request) => {
-        let token = JSON.parse(localStorage.getItem('session')).token;
-        if(token !== null) {
-            axiosInstance.defaults.headers.common["Authorization"] = token;
-            return axiosInstance.get(
-                'userList',
-                {params: {...request}}
-              )     
-        }
-        
-    },
-    getTokenFromStorage: ()=>{
-        return JSON.parse(localStorage.getItem('session')).token;
+    //axiosInstance.defaults.headers.common["Authorization"] = JSON.parse(localStorage.getItem('session')).token;
+        return axiosInstance.get(
+            'userList',
+            {params: {...request}}
+            )     
     }
 }
 
