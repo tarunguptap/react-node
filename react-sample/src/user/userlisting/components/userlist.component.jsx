@@ -25,7 +25,7 @@ class UserList extends Component {
         UserService.getusers({ })
         .then((response) => {
             this.setState({ 
-                users: response.data,
+                users: response.data.records,
                 isLoading: false
              })
         })
