@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button'
 import Spinner from 'react-bootstrap/Spinner'
 import Layout from '../../../shared/layouts/auth/auth.component'
 import { Auth } from '../../service/auth.service'
+import { toast } from 'react-toastify';
 
 class Login extends Component {
     constructor(props) {
@@ -43,13 +44,13 @@ class Login extends Component {
                 user: response.data,
                 token: response.data.token
             }));
-            console.log(JSON.parse(localStorage.getItem('session')).token)
-              this.props.history.push("/dashboard")
+            toast.success("Login Successfully.");
+            this.props.history.push("/dashboard")
           })
           .finally(() => {
               this.setState({ loading: false })
           }).catch(err =>{
-            this.setState({error : "Invalid Credentails"});
+            toast.error("Invalid Credentails");
         });
       } else {
         this.validator.showMessages();
