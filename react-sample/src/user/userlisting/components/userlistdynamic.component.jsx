@@ -19,6 +19,9 @@ class UserListDynamic extends Component {
     }
 
     pageChanged = (pager) => {
+      this.setState({
+        currentPage: pager.page
+      })
       this.fetchUsers(pager.page)
     };
 

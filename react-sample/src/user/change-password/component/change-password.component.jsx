@@ -3,6 +3,7 @@ import Layout from '../../../shared/layouts/admin/admin.component'
 import { UserService } from '../../service/user.service'
 import Button from 'react-bootstrap/Button'
 import Spinner from 'react-bootstrap/Spinner'
+import { toast } from 'react-toastify';
 
 class ChangePassword extends Component {
     constructor(props) {
@@ -35,7 +36,7 @@ class ChangePassword extends Component {
           .then((response) => {
               console.log(response)
               this.props.history.push("/dashboard")
-              alert("Password changed successfully.") // Need to add toast code
+              toast.success("Password changed successfully.") // Need to add toast code
           }).catch(err =>{
             this.setState({error : "Invalid Credentails"});
         }).finally(() => {

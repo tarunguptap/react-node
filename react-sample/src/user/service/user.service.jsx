@@ -1,7 +1,7 @@
 import axiosInstance from '../../shared/libs/axios'
 export const UserService = {
     changepassword: (request) => {
-        let token = UserService.getTokenFromStorage();
+        //let token = UserService.getTokenFromStorage();
         //const headers = {'xlogintoken': JSON.parse(localStorage.getItem('session')).token };
         return axiosInstance.put(
             'changepassword',
