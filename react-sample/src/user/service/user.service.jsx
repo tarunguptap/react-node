@@ -17,11 +17,17 @@ export const UserService = {
             )     
     },
     getusersempty: (request) => {
-            return axiosInstance.get(
-                'userListEmpty',
-                {params: {...request}}
-                )     
-        }
+        return axiosInstance.get(
+            'userListEmpty',
+            {params: {...request}}
+        )     
+    },
+    create: (request) => {
+        return axiosInstance.post(
+            'create-user',
+            {params: {...request}}
+        )     
+    }
 }
 
 export * from './user.service'

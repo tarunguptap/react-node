@@ -15,7 +15,12 @@ const userData = {
   password: "tarun",
   name: "tarun",
   username: "tarun",
-  isAdmin: true
+  isAdmin: true,
+  first_name: "tarun",
+  last_name: "gupta",
+  role: "admin",
+  team: "test",
+  expertise: "java"
 };
 
 const userList1 = [{
@@ -23,14 +28,24 @@ const userList1 = [{
   password: "Ankur",
   name: "Ankur",
   username: "Ankur",
-  isAdmin: true
+  isAdmin: true,
+  first_name: "ankur",
+  last_name: "sharma",
+  role: "admin",
+  team: "test",
+  expertise: "java"
 },
 {
   email: "sachin@qasource.com",
   password: "Sachin",
   name: "Sachin",
   username: "Sachin",
-  isAdmin: false
+  isAdmin: false,
+  first_name: "sachin",
+  last_name: "sharma",
+  role: "admin",
+  team: "test",
+  expertise: "java"
 }];
 
 const userListEmpty = [];
@@ -40,20 +55,35 @@ const userList = [{
   password: "tarun",
   name: "tarun",
   username: "tarun",
-  isAdmin: true
+  isAdmin: true,
+  first_name: "tarun",
+  last_name: "gupta",
+  role: "manager",
+  team: "test",
+  expertise: "java"
 },
 {
   email: "navneet@qasource.com",
   password: "Navneet",
   name: "Navneet",
   username: "Navneet",
-  isAdmin: false
+  isAdmin: false,
+  first_name: "navneet",
+  last_name: "sharma",
+  role: "manager",
+  team: "test",
+  expertise: "java"
 }, {
   email: "karan@qasource.com",
   password: "Karan",
   name: "Karan",
   username: "Karan",
-  isAdmin: false
+  isAdmin: false,
+  first_name: "karan",
+  last_name: "sharma",
+  role: "manager",
+  team: "test",
+  expertise: "java"
 }];
 
 // enable CORS
@@ -108,10 +138,25 @@ app.get('/userList', (req, res) => {
     return res.json({ records: userList, total : totalRecords});
   }
   console.log("@@@@@ userList1 ::: ",JSON.stringify(userList1));
-  return res.json({ records: userList1, total : totalRecords});;
+  return res.json({ records: userList1, total : totalRecords});
 });
 
-
+// validate the user credentials
+app.post('/create-user', function (req, res) {
+  if (!req.user) return res.status(401).json({ success: false, message: 'Invalid user to access it.' });
+  const email = req.body.params.email;
+  const fstname = req.body.params.first_name;
+  console.log(req.body);
+  // return 400 status if username/password is not exist
+  if (!email || !fstname) {
+    console.log("emai :: ", email, " firstname :: ", fstname)
+    return res.status(400).json({
+      error: true,
+      message: "User email or name is required."
+    });    
+  }
+  return res.send('User created Scessfully!!');
+});
 
 // request handlers
 app.put('/changepassword', (req, res) => {

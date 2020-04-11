@@ -1,5 +1,6 @@
 import React from 'react';
 import Paginator from './paginator.component';
+import { Link } from 'react-router-dom'
 let table = (props) => {
 
   let headerList = props.tableHeader.map((header, i) => {
@@ -18,6 +19,13 @@ let table = (props) => {
           <p>Table to display {props.title} data effectively</p>
         </div>
       </div>
+      {props.showBreadcrumb &&
+        <ul className="app-breadcrumb breadcrumb">
+            <li className="breadcrumb-item">
+                <Link class="btn btn-primary" to="/user-create">Create New User</Link>
+            </li>
+        </ul>
+      }
       <div className="row">
         <div className="col-md-12">
           <div className="tile">

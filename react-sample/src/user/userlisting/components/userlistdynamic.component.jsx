@@ -50,7 +50,11 @@ class UserListDynamic extends Component {
     render() {
         return (
           <Layout>
-            <Table pageChanged={this.pageChanged} currentPage = {this.state.currentPage} totalItems={this.state.totalRecords} itemsPerPage={this.state.itemsPerPage} tableHeader ={this.state.tableHeader} tableData={this.state.tableData} title="User List" tableName="User List Table"/>
+            <Table pageChanged={this.pageChanged} currentPage = {this.state.currentPage} 
+            totalItems={this.state.totalRecords} itemsPerPage={this.state.itemsPerPage} 
+            tableHeader ={this.state.tableHeader} tableData={this.state.tableData} 
+            title="User List" tableName="User List Table" isLoading={this.state.isLoading}
+            showBreadcrumb="true" breadcrumbTitle="Create New User" breadcrumbLink="/users-create"/>
           </Layout>
         );
     }
