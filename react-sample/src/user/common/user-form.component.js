@@ -7,6 +7,7 @@
  */
 
 import React from 'react'
+import LoadingComponent from '../../shared/component/loading.compoent'
 
 let UserForm = (props) => {
     let roleOptions = [
@@ -85,6 +86,7 @@ let UserForm = (props) => {
                         </div>
                     </div>
                 </div>
+                <LoadingComponent loading={props.fields.loading}></LoadingComponent>
             </div>
         </form>
 
