@@ -23,6 +23,7 @@ let table = (props) => {
           <div className="tile">
             <div className="tile-body">
               <div className="table-responsive">
+              { dataList.length === 0 ? (<div>No Records!</div>) : (
                 <table className="table table-hover table-bordered">
                   <thead>
                     <tr>
@@ -30,9 +31,10 @@ let table = (props) => {
                     </tr>
                   </thead>
                   <tbody>
-                    { dataList.length !== 0 ? dataList : (<div>No Records!</div>) }
+                    { dataList}
                   </tbody>
                 </table>
+                ) }
               </div>
             </div>
             <Paginator

@@ -33,6 +33,8 @@ const userList1 = [{
   isAdmin: false
 }];
 
+const userListEmpty = [];
+
 const userList = [{
   email: "tarun@qasource.com",
   password: "tarun",
@@ -91,13 +93,16 @@ app.get('/', (req, res) => {
 });
 
 // request handlers
+app.get('/userListEmpty', (req, res) => {
+  if (!req.user) return res.status(401).json({ success: false, message: 'Invalid user to access it.' });
+  return res.json({ records: userListEmpty, total : "0"});;
+});
+
+// request handlers
 app.get('/userList', (req, res) => {
-  console.log("incoming request for userlist");
   const pagenumber = req.query.pagenumber;
   const totalRecords = 5;
-  console.log("#### pagenumber  : ",pagenumber);
   if (!req.user) return res.status(401).json({ success: false, message: 'Invalid user to access it.' });
-  res.setHeader("totalRecords", totalRecords);
   if(pagenumber == 1) {
     console.log("@@@@@  userList :: ",JSON.stringify(userList));
     return res.json({ records: userList, total : totalRecords});
