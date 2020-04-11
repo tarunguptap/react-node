@@ -1,31 +1,18 @@
 
 import React from 'react'
 import Audit from "./audit.png"
-import { Link, withRouter } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 
 export default withRouter(class Sidebar extends React.Component {
     state = {
-        user: ""
-    }
-
-    userlist() {
-        this.props.history.push('/users')        
-    }
-
-    userlistdynamic() {
-        this.props.history.push('/dynamicusers')        
-    }
-    dashboard() {
-        this.props.history.push('/dashboard')        
+        user: JSON.parse(localStorage.getItem('session')).user
     }
 
     componentDidMount() {
         let session = JSON.parse(localStorage.getItem('session'));
         if(session === null) {
             this.props.history.push('/login')
-        } else {
-            this.state.user = JSON.parse(localStorage.getItem('session')).user
-        }
+        } 
     }
     render() {
         return (
@@ -39,18 +26,18 @@ export default withRouter(class Sidebar extends React.Component {
                         </div>
                     </div>
                     <ul className="app-menu">
-                        <li className="app-menu__item">
+                        <NavLink exact className="app-menu__item" to="/dashboard">
                             <i className="app-menu__icon fa fa-dashboard"></i>
-                            <span className="app-menu__label" onClick={ ()=> this.dashboard() }>Dashboard </span>
-                        </li>
-                        <li className="app-menu__item">
+                                <span className="app-menu__label">Dashboard</span>
+                        </NavLink>
+                        <NavLink exact className="app-menu__item" to="/users">
                             <i className="app-menu__icon fa fa-dashboard"></i>
-                            <span className="app-menu__label" onClick={ ()=> this.userlist() }>Users </span>
-                        </li>
-                        <li className="app-menu__item">
+                                <span className="app-menu__label">Users</span>
+                        </NavLink>
+                        <NavLink exact className="app-menu__item" to="/dynamicusers">
                             <i className="app-menu__icon fa fa-dashboard"></i>
-                            <span className="app-menu__label" onClick={ ()=> this.userlistdynamic() }>Dynamic Users </span>
-                        </li>
+                                <span className="app-menu__label">Dynamic Users</span>
+                        </NavLink>
                     </ul>
                 </aside>
             </React.Fragment>
