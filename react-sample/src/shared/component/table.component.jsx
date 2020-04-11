@@ -40,7 +40,7 @@ let table = (props) => {
             <Paginator
               totalItems={props.totalItems}
               currentPage={props.currentPage}
-              maxSize={3}
+              maxPaginationLinkSize={3}
               pageChanged={props.pageChanged}
               itemsPerPage={props.itemsPerPage}>
           </Paginator>

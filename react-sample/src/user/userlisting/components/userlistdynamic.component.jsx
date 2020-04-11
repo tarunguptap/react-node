@@ -41,7 +41,7 @@ class UserListDynamic extends Component {
               users: response.data.records,
               isLoading: false,
               totalRecords: response.data.total,
-              tableData: response.data.records.map((user, i) => ([i+1, user.email, user.name, user.username]))
+              tableData: response.data.records.map((user, i) => ([i+(((this.state.currentPage-1)*this.state.itemsPerPage)+1), user.email, user.name, user.username]))
              })
         })
         .catch(error => this.setState({ error, isLoading: false }));
