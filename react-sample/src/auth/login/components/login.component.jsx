@@ -36,6 +36,7 @@ class Login extends Component {
     let { email, password } = this.state
     this.setState({ loading: true })
     if (this.validator.allValid()) {
+      localStorage.removeItem('session')
       Auth.login({ email: email, password: password })
           .then((response) => {
               console.log(response)
