@@ -11,6 +11,7 @@ class UserListDynamic extends Component {
             users: [],
             tableHeader: ["#","Email","Name","Username"],
             tableData: [],
+            searchText: '',
             currentPage: 1,
             totalRecords: 0,
             itemsPerPage: 3,
@@ -18,24 +19,30 @@ class UserListDynamic extends Component {
         };
     }
 
+    onSearch = (str) => {
+      let { currentPage } = this.state
+      this.fetchUsers(str.target.value, currentPage)
+    }
+
     pageChanged = (pager) => {
+      let { searchText } = this.state
       this.setState({
         currentPage: pager.page
       })
-      this.fetchUsers(pager.page)
+      this.fetchUsers(searchText, pager.page)
     };
 
     componentDidMount() {
-      let { currentPage } = this.state
-      this.fetchUsers(currentPage);
+      let { searchText, currentPage } = this.state
+      this.fetchUsers(searchText, currentPage);
     };
 
-    fetchUsers(currentPage=1) {
+    fetchUsers(searchText='', currentPage=1) {
       let session = JSON.parse(localStorage.getItem('session'));
       if(session === null) {
           this.props.history.push('/login')
       } else {
-        UserService.getusers({ pagenumber: currentPage })
+        UserService.getusers({ searchText: searchText, pagenumber: currentPage })
         .then((response) => {
             this.setState({               
               users: response.data.records,
@@ -50,11 +57,12 @@ class UserListDynamic extends Component {
     render() {
         return (
           <Layout>
-            <Table pageChanged={this.pageChanged} currentPage = {this.state.currentPage} 
+            <Table search={this.onSearch} pageChanged={this.pageChanged} 
+            currentPage = {this.state.currentPage} 
             totalItems={this.state.totalRecords} itemsPerPage={this.state.itemsPerPage} 
             tableHeader ={this.state.tableHeader} tableData={this.state.tableData} 
             title="User List" tableName="User List Table" isLoading={this.state.isLoading}
-            showBreadcrumb="true" breadcrumbTitle="Create New User" breadcrumbLink="/users-create"/>
+            showBreadcrumb="true" breadcrumbTitle="Create New User" breadcrumbLink="/user-create"/>
           </Layout>
         );
     }

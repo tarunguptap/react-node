@@ -130,15 +130,19 @@ app.get('/userListEmpty', (req, res) => {
 
 // request handlers
 app.get('/userList', (req, res) => {
+  const searchText = req.query.searchText;
   const pagenumber = req.query.pagenumber;
   const totalRecords = 5;
   if (!req.user) return res.status(401).json({ success: false, message: 'Invalid user to access it.' });
-  if(pagenumber == 1) {
-    console.log("@@@@@  userList :: ",JSON.stringify(userList));
-    return res.json({ records: userList, total : totalRecords});
+  let returnList = userList;
+  if(pagenumber > 1) {
+    returnList = userList1;    
   }
-  console.log("@@@@@ userList1 ::: ",JSON.stringify(userList1));
-  return res.json({ records: userList1, total : totalRecords});
+  if(searchText) {
+    returnList = returnList.filter(user => user.email.includes(searchText) || user.username.includes(searchText));
+  }
+  console.log("@@@@@ returnList ::: ",JSON.stringify(returnList));
+  return res.json({ records: returnList, total : totalRecords});
 });
 
 // validate the user credentials
