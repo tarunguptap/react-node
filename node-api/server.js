@@ -19,7 +19,7 @@ const userData = {
   isAdmin: true,
   first_name: "tarun",
   last_name: "gupta",
-  role: "admin",
+  role: "Admin",
   team: "test",
   expertise: "java"
 };
@@ -131,7 +131,7 @@ app.get('/', (req, res) => {
 // request handlers
 app.get('/userListEmpty', (req, res) => {
   if (!req.user) return res.status(401).json({ success: false, message: 'Invalid user to access it.' });
-  return res.json({ records: userListEmpty, total : "0"});;
+  return res.json({ records: userListEmpty, total : 0});
 });
 
 // request handlers
@@ -150,6 +150,15 @@ app.get('/userList', (req, res) => {
   console.log("@@@@@ returnList ::: ",JSON.stringify(returnList));
   return res.json({ records: returnList, total : totalRecords});
 });
+
+// request handlers
+app.get('/user/:id', (req, res) => {
+  console.log("Inside user by id method");
+  const userId = req.param.id;
+  if (!req.user) return res.status(401).json({ success: false, message: 'Invalid user to access it.' });
+  return res.json(userData);
+});
+
 
 // validate the user credentials
 app.post('/create-user', function (req, res) {
@@ -187,6 +196,13 @@ app.put('/changepassword', (req, res) => {
     });
   }
   res.send('Password changed succesfully  - ' + userData.name);
+});
+
+// request handlers
+app.put('/update-user', (req, res) => {
+  if (!req.user) return res.status(401).json({ success: false, message: 'Invalid user to access it.' });
+  const firstName = req.body.first_name;
+  res.send('Password changed succesfully  - ' + firstName);
 });
 
 

@@ -62,7 +62,7 @@ class UserList extends Component {
     }
 
     render() {
-        const { isLoading, users, error } = this.state;
+        const { isLoading, users, error, total } = this.state;
         return (
           <Layout>
             <div className="app-title">
@@ -87,14 +87,14 @@ class UserList extends Component {
                           <tr>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Username</th>
+                            <th>Username {total === "0" ? "true" : "false"}</th>
                           </tr>
                         </thead>
                         <tbody>
-                          {!isLoading ? (this.dataTable() 
+                          {!isLoading ? ( total !== 0 ? this.dataTable() : (<tr><td colSpan="3"><h3>No Records!!</h3></td></tr>)
                             // If there is a delay in data, let's let the user know it's loading
                             ) : (
-                            <h3>Loading...</h3>
+                            <tr><td colSpan="3"><h3>Loading...</h3></td></tr>
                           )}
                         </tbody>
                       </table>

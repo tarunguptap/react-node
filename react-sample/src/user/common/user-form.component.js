@@ -35,16 +35,16 @@ let UserForm = (props) => {
                     <div className="form-group row">
                         <label className="control-label col-md-3">Email</label>
                         <div className="col-md-8">
-                            <input  className="form-control col-md-8" type="email" placeholder="Enter email address" name="email" value={props.fields.email} onChange={(event) => props.stateUdateHandler(event)} disabled={ props.fields._id != ''} />
+                            <input  className="form-control col-md-8" type="email" placeholder="Enter email address" name="email" value={props.fields.email} onChange={(event) => props.stateUdateHandler(event)} disabled={ props.fields._id !== ''} />
                         </div>
                     </div>
 
                     <div className="form-group row">
                         <label className="control-label col-md-3">Role { props.fields.role}</label>
                         <div className="col-md-4">
-                            <select name="role" className="form-control" onChange={(event) => props.stateUdateHandler(event)} disabled={ props.fields._id != ''} >
+                            <select name="role" className="form-control" onChange={(event) => props.stateUdateHandler(event)} disabled={ props.fields._id !== ''} >
                                 <option>Select a role</option>
-                                { roleOptions.map(i => i.value == props.fields.role ? (
+                                { roleOptions.map(i => i.value === props.fields.role ? (
                                     <option key={ i.value } value={i.value} selected>
                                         {i.name}
                                     </option>

@@ -27,6 +27,15 @@ export const UserService = {
             'create-user',
             {params: {...request}}
         )     
+    },
+    get: (id) => {
+        return axiosInstance.get(`/user/${id}`)
+    }, 
+    update: (request) => {
+        return axiosInstance.put(
+            'update-user',
+            {...request}
+        )
     }
 }
 
