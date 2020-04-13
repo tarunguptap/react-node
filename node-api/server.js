@@ -11,6 +11,7 @@ const port = process.env.PORT || 4000;
 
 // static user details
 const userData = {
+  id: 1,
   email: "tarun@qasource.com",
   password: "tarun",
   name: "tarun",
@@ -24,6 +25,7 @@ const userData = {
 };
 
 const userList1 = [{
+  id: 4,
   email: "ankur@qasource.com",
   password: "Ankur",
   name: "Ankur",
@@ -36,6 +38,7 @@ const userList1 = [{
   expertise: "java"
 },
 {
+  id: 5,
   email: "sachin@qasource.com",
   password: "Sachin",
   name: "Sachin",
@@ -51,6 +54,7 @@ const userList1 = [{
 const userListEmpty = [];
 
 const userList = [{
+  id: 1,
   email: "tarun@qasource.com",
   password: "tarun",
   name: "tarun",
@@ -63,6 +67,7 @@ const userList = [{
   expertise: "java"
 },
 {
+  id: 2,
   email: "navneet@qasource.com",
   password: "Navneet",
   name: "Navneet",
@@ -74,6 +79,7 @@ const userList = [{
   team: "test",
   expertise: "java"
 }, {
+  id: 3,
   email: "karan@qasource.com",
   password: "Karan",
   name: "Karan",

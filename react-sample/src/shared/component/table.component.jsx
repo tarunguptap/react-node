@@ -23,7 +23,7 @@ let table = (props) => {
         {props.showBreadcrumb &&
           <ul className="app-breadcrumb breadcrumb">
               <li className="breadcrumb-item">
-                  <Link class="btn btn-primary" to={props.breadcrumbLink}>{props.breadcrumbTitle}</Link>
+                  <Link className="btn btn-primary" to={props.breadcrumbLink}>{props.breadcrumbTitle}</Link>
               </li>
           </ul>
         }

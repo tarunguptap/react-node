@@ -34,6 +34,10 @@ export default withRouter(class Sidebar extends React.Component {
                             <i className="app-menu__icon fa fa-dashboard"></i>
                                 <span className="app-menu__label">Users</span>
                         </NavLink>
+                        <NavLink exact className="app-menu__item" to="/staticusers">
+                            <i className="app-menu__icon fa fa-dashboard"></i>
+                                <span className="app-menu__label">Static Users</span>
+                        </NavLink>
                         <NavLink exact className="app-menu__item" to="/dynamicusers">
                             <i className="app-menu__icon fa fa-dashboard"></i>
                                 <span className="app-menu__label">Dynamic Users</span>
