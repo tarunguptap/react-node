@@ -14,7 +14,15 @@ export const Auth = {
             'changepassword',
             {...request}
         )
-    }
+    }, 
+
+    isLoggedIn: (request) => {
+        let session = JSON.parse(localStorage.getItem('session'));
+        if(session && session.token) {
+            return true;
+        }
+        return false;
+     }
 }
 
 export * from './auth.service'

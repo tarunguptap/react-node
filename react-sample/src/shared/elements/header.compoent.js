@@ -9,13 +9,6 @@ export default withRouter(class Header extends React.Component {
         super(props)
      }
 
-     componentDidMount() {
-        let session = JSON.parse(localStorage.getItem('session'));
-        if(session === null) {
-            this.props.history.push('/login')
-        }
-    };
-
      logout() {
          localStorage.removeItem('session')
          // Need to see how can we get the access to history here

@@ -12,7 +12,11 @@ import UserList from "./user/userlisting/components/userlist.component"
 import Dashboard from "./dashboard/components/dashboard.component"
 import ChangePassword from "./user/change-password/component/change-password.component"
 import DynamicUserList from "./user/userlisting/components/userlistdynamic.component"
+import StaticUserList from "./user/userlisting/components/userlist-static.component"
 import UserCreateComponent from "./user/user-create/user-create.component"
+import UserUpdateComponent from "./user/user-update/update-user.component"
+import PrivateRoute from "./shared/elements/PrivateRoute.component"
+import PageNotFound from "./shared/elements/PageNotFound.component"
 function App() {
   return (
     <div className="app-routes">
@@ -22,11 +26,14 @@ function App() {
           <Switch>
             <Route path="/" component={Login} exact />
             <Route path="/login" component={Login} />
-            <Route path="/dashboard" component={Dashboard} />
-            <Route path="/users" component={UserList} />
-            <Route path="/changepassword" component={ChangePassword} />
-            <Route path="/dynamicusers" component={DynamicUserList} />
-            <Route path="/user-create" component={UserCreateComponent} />
+            <PrivateRoute path="/dashboard" component={Dashboard} />
+            <PrivateRoute path="/users" component={UserList} />
+            <PrivateRoute path="/changepassword" component={ChangePassword} />
+            <PrivateRoute path="/dynamicusers" component={DynamicUserList} />
+            <PrivateRoute path="/user-create" component={UserCreateComponent} />
+            <PrivateRoute path="/staticusers" component={StaticUserList} />
+            <PrivateRoute path="/users-update/:id" component={UserUpdateComponent} />
+            <Route path="*" component={PageNotFound} />
           </Switch>
         </Router>
       </React.Fragment>
